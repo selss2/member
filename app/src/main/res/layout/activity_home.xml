@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이미지 보기"
+        android:textSize="30dp"
+        android:id="@+id/bt_img"
+        android:background="#454242"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/bt_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주소록"
+        android:background="#454242"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/bt_create_db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DB생성"
+        android:background="#454242"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

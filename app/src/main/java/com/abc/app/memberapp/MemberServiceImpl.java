@@ -1,43 +1,25 @@
 package com.abc.app.memberapp;
 
+import android.content.Context;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hb2016 on 2016-07-27.
+ * Created by hb on 2016-07-27.
  */
 public class MemberServiceImpl implements MemberService{
-    private MemberDAO dao = MemberDAO.getInstance();
-    private MemberBean session;
 
-    private static MemberServiceImpl instance = new MemberServiceImpl();
+    MemberDAO dao;
+    MemberBean session;
+    public MemberServiceImpl(Context context) {
 
-    public static MemberServiceImpl getInstance() {
-        return instance;
-    }
-
-
-    private MemberServiceImpl() {
-        session = new MemberBean();
+        dao = new MemberDAO(context);
     }
 
     @Override
-    public String regist(MemberBean mem) {
-        String msg = "";
-        MemberBean temp = this.findById(mem.getId());
-        if (temp == null) {
-            System.out.println(mem.getId()+"가 존재하지 않음,가입 가능한 ID");
-            int result = dao.insert(mem);
-            if (result==1) {
-                msg = "success";
-            } else {
-                msg = "fail";
-            }
-        } else {
-            System.out.println(mem.getId()+"가 존재함,가입 불가능한 ID");
-            msg = "fail";
-        }
-
-        return msg;
+    public void regist(MemberBean mem) {
+        dao.insert(mem);
     }
 
 
@@ -59,10 +41,14 @@ public class MemberServiceImpl implements MemberService{
         dao.delete(member);
     }
 
+    @Override
+    public boolean login(MemberBean member) {
+        return dao.login(member);
+    }
+
 
     @Override
     public int count() {
-        // TODO Auto-generated method stub
         return dao.count();
     }
 
@@ -74,14 +60,19 @@ public class MemberServiceImpl implements MemberService{
 
 
     @Override
-    public List<?> list() {
+    public ArrayList<MemberBean> list() {
 
         return dao.list();
     }
+
+
     @Override
     public List<?> findBy(String keyword) {
         return dao.findByName(keyword);
     }
+
+
+
     @Override
     public void logout(MemberBean member) {
         if (member.getId().equals(session.getId())
@@ -90,4 +81,3 @@ public class MemberServiceImpl implements MemberService{
         }
 
     }
-}
